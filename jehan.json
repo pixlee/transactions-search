@@ -1,0 +1,76 @@
+{
+    "catItem": {
+        "id": 271698,
+        "attributes": [],
+        "brand": "LA Hearts by PacSun",
+        "imageId": 271698,
+        "imageProcessed": true,
+        "sku": "0638484260021",
+        "title": "LA Hearts by PacSun Satin Cheeky Panty",
+        "type": 0,
+        "url": "https://www.pacsun.com/la-hearts-by-pacsun/satin-cheeky-panty-0638484260021.html",
+        "itemUrl": "https://www.pacsun.com/la-hearts-by-pacsun/satin-cheeky-panty-0638484260021.html"
+    },
+    "aggregateMetaOn": true,
+    "showAggregateSummary": false,
+    "directReviewsCount": 9,
+    "relatedReviewsCount": 0,
+    "recommendedPercentageFormatted": null,
+    "rating": 4.22,
+    "ratingFormatted": "4.2",
+    "ratingsBreakdown": [
+        {
+            "rating": 1,
+            "num": 0,
+            "pctOfRatingsFormatted": "0%"
+        },
+        {
+            "rating": 2,
+            "num": 0,
+            "pctOfRatingsFormatted": "0%"
+        },
+        {
+            "rating": 3,
+            "num": 0,
+            "pctOfRatingsFormatted": "0%"
+        },
+        {
+            "rating": 4,
+            "num": 7,
+            "pctOfRatingsFormatted": "78%"
+        },
+        {
+            "rating": 5,
+            "num": 2,
+            "pctOfRatingsFormatted": "22%"
+        }
+    ],
+    "customDimensions": [
+        {
+            "dimensionDefinitionId": 2,
+            "average": 0.0,
+            "label": "Sizing",
+            "required": false,
+            "sortOrder": 2,
+            "type": 2,
+            "values": [
+                {
+                    "id": 4,
+                    "count": 0,
+                    "label": "Smally"
+                },
+                {
+                    "id": 5,
+                    "count": 0,
+                    "label": "Okay"
+                },
+                {
+                    "id": 6,
+                    "count": 0,
+                    "label": "Biggy"
+                }
+            ]
+        }
+    ],
+    "reviewsCount": 9
+}
