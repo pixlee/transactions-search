@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(2),
+    marginLeft: theme.spacing(2),
     minWidth: 500
   },
   cardActions: {
@@ -74,7 +75,7 @@ export default function TransactionFilter({ onApplyFilter, resultCounts }) {
         </Tooltip>
       </Toolbar>
       <Collapse in="false">
-        <Grid container direction="column" alignItems="center">
+        <Grid container direction="row" alignItems="top">
           <Card className={classes.card} variant="outlined">
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
