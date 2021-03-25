@@ -13,6 +13,8 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
 
+import KeyFigures from "./KeyFigures";
+
 const useStyles = makeStyles(theme => ({
   root: {
     paddingLeft: theme.spacing(2),
@@ -158,34 +160,7 @@ export default function TransactionFilter({ onApplyFilter, resultCounts }) {
               </form>
             </CardContent>
           </Card>
-
-          <Card className={classes.card} variant="outlined">
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Key Figures
-              </Typography>
-              <p>
-                {resultCounts.transactionCount} transactions found, involving{" "}
-                {resultCounts.transactionsItemCount} items.{" "}
-                {resultCounts.emailsSent} emails resulted in{" "}
-                {resultCounts.transactionsWithReviews} reviews.
-              </p>
-              <p>
-                Of these {resultCounts.transactionCount} transactions:
-                <ul>
-                  <li>{resultCounts.transactionsWithComments} had comments</li>
-                  <li>
-                    {resultCounts.transactionsWithDeliveryDates} had delivery
-                    dates
-                  </li>
-                  <li>
-                    {resultCounts.transactionsWithOptedOutUsers} involved
-                    opted-out users
-                  </li>
-                </ul>
-              </p>
-            </CardContent>
-          </Card>
+          <KeyFigures resultCounts={resultCounts} />
         </Grid>
       </Collapse>
     </>
