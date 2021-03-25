@@ -48,7 +48,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function TransactionFilter({ onApplyFilter, onFilterChange, resultCounts }) {
+export default function TransactionFilter({
+  onApplyFilter,
+  onFilterChange,
+  resultCounts
+}) {
   const classes = useStyles();
   const [visible, setVisible] = React.useState(false);
   const [filter, setFilter] = React.useState({});
@@ -58,13 +62,13 @@ export default function TransactionFilter({ onApplyFilter, onFilterChange, resul
     onApplyFilter(filter);
   };
 
-  const updateFilter = (event) => {
-    setFilter({...filter, [event.target.id]: event.target.value });
-  }
+  const updateFilter = event => {
+    setFilter({ ...filter, [event.target.id]: event.target.value });
+  };
 
-  const checkboxUpdateFilter = (event) => {
-    setFilter({...filter, [event.target.id]: event.target.checked });
-  }
+  const checkboxUpdateFilter = event => {
+    setFilter({ ...filter, [event.target.id]: event.target.checked });
+  };
 
   return (
     <>
@@ -89,9 +93,27 @@ export default function TransactionFilter({ onApplyFilter, onFilterChange, resul
                 Filter Options
               </Typography>
               <form id="transSearch" onSubmit={handleSubmit}>
-                <p><TextField id="orderId" label="External Order Id" onChange={updateFilter} /></p>
-                <p><TextField id="emailAddress" label="User Email Address" onChange={updateFilter} /></p>
-                <p><TextField id="productSku" label="Product SKU" onChange={updateFilter} /></p>
+                <p>
+                  <TextField
+                    id="orderId"
+                    label="External Order Id"
+                    onChange={updateFilter}
+                  />
+                </p>
+                <p>
+                  <TextField
+                    id="emailAddress"
+                    label="User Email Address"
+                    onChange={updateFilter}
+                  />
+                </p>
+                <p>
+                  <TextField
+                    id="productSku"
+                    label="Product SKU"
+                    onChange={updateFilter}
+                  />
+                </p>
 
                 <div className={classes.dateFilter}>
                   <p>
@@ -149,11 +171,18 @@ export default function TransactionFilter({ onApplyFilter, onFilterChange, resul
                       InputLabelProps={{ shrink: true }}
                       onChange={updateFilter}
                     />
-                    </p>
-                    <p>
-                      <FormControlLabel control={<Checkbox id="rseWindow" onChange={checkboxUpdateFilter}/>}
-                      label="Review Email Window" />
-                    </p>
+                  </p>
+                  <p>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          id="rseWindow"
+                          onChange={checkboxUpdateFilter}
+                        />
+                      }
+                      label="Review Email Window"
+                    />
+                  </p>
                 </div>
                 <CardActions className={classes.cardActions}>
                   <Button
