@@ -1,6 +1,6 @@
-import request from './lib/request'
+import request from "./lib/request";
 
-export const DEFAULT_SORT = "orderId,asc"
+export const DEFAULT_SORT = "orderId,asc";
 
 /**
  * Get a paginated list of transactions, returning a promise
@@ -13,42 +13,45 @@ export const DEFAULT_SORT = "orderId,asc"
  *
  * @return {Page} The response data
  */
-export const list = getApiPath('/api/searchTools/transaction');
-export const count = getApiPath('/api/searchTools/transactionCounts');
+export const list = getApiPath("/api/searchTools/transaction");
+export const count = getApiPath("/api/searchTools/transactionCounts");
 
+function getApiPath(path) {
+  return async ({
+    pageNumber = 0,
+    pageSize = 20,
+    sort = DEFAULT_SORT,
+    filterOptions,
+    siteKey
+  }) => {
+    let payload = `{"siteKey":"${siteKey}",`;
 
-  function getApiPath(path) {
-    return async ({ pageNumber = 0, pageSize = 20, sort = DEFAULT_SORT, filterOptions, siteKey }) => {
-    let payload = `{"siteKey":"${siteKey}",`
-
-      if(filterOptions) {
-
-          for (var key in filterOptions) {
-              var value = filterOptions[key];
-              if(value) {
-                  payload = payload.concat(`"${key}":"${value}",`)
-              }
-              console.log(key, value);
-          }
-          payload = payload.concat(`"pageNumber":"${pageNumber}"}`)
-
-          console.debug(`payload 4 is ${payload}` );
-      } else {
-          payload = payload.concat(`"pageNumber":"${pageNumber}"}`)
+    if (filterOptions) {
+      for (var key in filterOptions) {
+        var value = filterOptions[key];
+        if (value) {
+          payload = payload.concat(`"${key}":"${value}",`);
+        }
+        console.log(key, value);
       }
+      payload = payload.concat(`"pageNumber":"${pageNumber}"}`);
 
+      console.debug(`payload 4 is ${payload}`);
+    } else {
+      payload = payload.concat(`"pageNumber":"${pageNumber}"}`);
+    }
 
-      if (payload){
-          console.debug(`sending this payload to exporter: ${payload}`)
-          const response = await request(`${path}`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: payload
-          });
+    if (payload) {
+      console.debug(`sending this payload to exporter: ${payload}`);
+      const response = await request(`${path}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload
+      });
 
-          console.debug(`got back this response from exporter: ${response}`)
+      console.debug(`got back this response from exporter: ${response}`);
 
-          return response
-      }
-  }
-  }
+      return response;
+    }
+  };
+}
