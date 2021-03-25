@@ -55,11 +55,11 @@ export default function TransactionFilter({
 }) {
   const classes = useStyles();
   const [visible, setVisible] = React.useState(false);
-  const [filter, setFilter] = React.useState({});
+  const [filter, setFilter] = React.useState({}); // Internal form state, updated live when editing
 
   const handleSubmit = event => {
     event.preventDefault();
-    onApplyFilter(filter);
+    onApplyFilter(filter); // "Parent" filter state; changing this results in an API request.
   };
 
   const updateFilter = event => {
