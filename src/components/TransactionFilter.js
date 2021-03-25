@@ -85,7 +85,7 @@ export default function TransactionFilter({
           </IconButton>
         </Tooltip>
       </Toolbar>
-      <Collapse in="false">
+      <Collapse in={visible}>
         <Grid container direction="row" alignItems="top">
           <Card className={classes.card} variant="outlined">
             <CardContent>
