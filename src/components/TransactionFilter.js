@@ -33,14 +33,21 @@ const useStyles = makeStyles(theme => ({
   form: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  textField: {
+    marginRight: "1rem"
+  },
+
+  dateFilter: {
+    marginTop: "1rem"
   }
 }));
 
-export default function TransactionFilter({onApplyFilter}) {
+export default function TransactionFilter({onApplyFilter, resultCounts}) {
   const classes = useStyles();
   const [visible, setVisible] = React.useState(false);
 
-  
+
   const handleSubmit = (event) => {
         event.preventDefault();
         var formElements = event.target.elements
@@ -64,7 +71,7 @@ export default function TransactionFilter({onApplyFilter}) {
           </IconButton>
         </Tooltip>
       </Toolbar>
-      <Collapse in={visible}>
+      <Collapse in="false">
         <Grid container direction="column" alignItems="center">
           <Card className={classes.card} variant="outlined">
             <CardContent>
@@ -72,70 +79,28 @@ export default function TransactionFilter({onApplyFilter}) {
                 Filter Options
               </Typography>
               <form id="transSearch" onSubmit={handleSubmit}>
-              <TextField id="orderId" label="External Order Id" />
-              <br/><br/>
-              <TextField id="emailAddress" label="User Email Address" />
+                <p><TextField id="orderId" label="External Order Id" /></p>
+              <p><TextField id="emailAddress" label="User Email Address" /></p>
+              <p><TextField id="productSku" label="Product SKU" /></p>
 
-              <br/><br/>
-              <TextField id="productSku" label="Product SKU" />
-    
-        <br/><br/>
+              <div className={classes.dateFilter}>
+              <p><TextField id="orderDateStart" label="Order Date From"
+                type="date" className={classes.textField} InputLabelProps={{ shrink: true }} />
+                <TextField id="orderDateEnd" label="Order Date To" type="date"
+                className={classes.textField} InputLabelProps={{ shrink: true }} />
+              </p>
 
-        <TextField
-    id="orderDateStart"
-    label="Order Date From"
-    type="date"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-    />&nbsp;&nbsp;&nbsp;&nbsp;
-    <TextField
-    id="orderDateEnd"
-    label="Order Date To"
-    type="date"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-    /><br/>
-    <TextField
-    id="deliveryDateStart"
-    label="Delivery Date From"
-    type="date"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-    />&nbsp;&nbsp;&nbsp;&nbsp;
-    <TextField
-    id="deliveryDateEnd"
-    label="Delivery Date To"
-    type="date"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-    /><br/>
+              <p><TextField id="deliveryDateStart" label="Delivery Date From" type="date"
+              className={classes.textField} InputLabelProps={{ shrink: true, }} />
+              <TextField id="deliveryDateEnd" label="Delivery Date To" type="date"
+              className={classes.textField} InputLabelProps={{ shrink: true }} />
+            </p>
 
-    <TextField
-    id="rseSendDateStart"
-    label="RSE Sent Date From"
-    type="date"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-    />&nbsp;&nbsp;&nbsp;&nbsp;
-    <TextField
-    id="rseSendDateEnd"
-    label="RSE Sent Date To"
-    type="date"
-    className={classes.textField}
-    InputLabelProps={{
-        shrink: true,
-    }}
-    /><br/>
+            <p><TextField id="rseSendDateStart" label="RSE Sent Date From" type="date"
+            className={classes.textField} InputLabelProps={{ shrink: true }} />
+            <TextField id="rseSendDateEnd" label="RSE Sent Date To" type="date"
+            className={classes.textField} InputLabelProps={{ shrink: true }} /></p>
+      </div>
                 <CardActions className={classes.cardActions}>
                 <Button form="transSearch" type="submit" size="small" color="primary">
                   Apply
@@ -146,7 +111,23 @@ export default function TransactionFilter({onApplyFilter}) {
               </CardActions>
               </form>
             </CardContent>
-          
+
+          </Card>
+
+          <Card className={classes.card} variant="outlined">
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Key Figures
+              </Typography>
+              <p>{resultCounts.transactionCount} transactions found, involving {resultCounts.transactionsItemCount} items. {resultCounts.emailsSent} emails resulted in {resultCounts.transactionsWithReviews} reviews.</p>
+              <p>Of these {resultCounts.transactionCount} transactions:
+              <ul>
+                <li>{resultCounts.transactionsWithComments} had comments</li>
+                <li>{resultCounts.transactionsWithDeliveryDates} had delivery dates</li>
+                <li>{resultCounts.transactionsWithOptedOutUsers} involved opted-out users</li>
+              </ul>
+              </p>
+            </CardContent>
           </Card>
         </Grid>
       </Collapse>
